@@ -45,11 +45,17 @@ function playRound(playerSelection, computerSelection) {
   }
    
 
-function game () {
-    let playerSelection = prompt("What's your sign?");
+function game (playerSelection) {
+    // let playerSelection = prompt("What's your sign?");
     const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection.toLowerCase(), computerSelection));
-    console.log(`DEBUG: plyaer = ${playerSelection}; computer = ${computerSelection}`)
+    console.log(`DEBUG: plyaer = ${playerSelection}; computer = ${computerSelection}`);
+    const resultDiv = document.querySelector("#rps-outcome");
+    resultDiv.textContent = playRound(playerSelection.toLowerCase(), computerSelection);
 }
 
-game();
+const playerChoice = document.querySelectorAll(".player-choice");
+playerChoice.forEach(element => {
+    element.addEventListener("click", e => {game(e.target.dataset.playechoice)});
+});
+
+
